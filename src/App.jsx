@@ -1,7 +1,20 @@
-import * as React from "react"
+import * as React from "react";
 // IMPORT ANY NEEDED COMPONENTS HERE
-import { createDataSet } from "./data/dataset"
-import "./App.css"
+
+// import Header from "./components/Header/Header";
+// import "./Header.css";
+import "./components/Header/Header";
+import Header from "./components/Header/Header";
+
+import "./components/Instructions/Instructions";
+import Instructions from "./components/Instructions/Instructions";
+
+import "./components/Chip/Chip";
+import Chip from "./components/Chip/Chip";
+
+//end of additions
+import { createDataSet } from "./data/dataset";
+import "./App.css";
 
 // don't move this!
 export const appInfo = {
@@ -16,9 +29,17 @@ export const appInfo = {
     noSelectedItem: `Almost there! Choose a menu item and you'll have the fast food facts right at your fingertips!`,
     allSelected: `Great choice! Amazing what a little knowledge can do!`,
   },
-}
+};
 // or this!
-const { data, categories, restaurants } = createDataSet()
+const { data, categories, restaurants } = createDataSet();
+
+//start my code block
+
+// function Header(props) {
+//   return <h1>Hello, {props.name}</h1>;
+// }
+
+//end
 
 export function App() {
   return (
@@ -28,21 +49,34 @@ export function App() {
         <div className="categories options">
           <h2 className="title">Categories</h2>
           {/* YOUR CODE HERE */}
+          {/* map over */}
+          {categories.map((str, i) => {
+            return <p key={i}> {str} </p>;
+          })}
+          ;
         </div>
       </div>
 
       {/* MAIN COLUMN */}
       <div className="container">
         {/* HEADER GOES HERE */}
-
+        <Header info={appInfo.title} />
         {/* RESTAURANTS ROW */}
         <div className="RestaurantsRow">
           <h2 className="title">Restaurants</h2>
-          <div className="restaurants options">{/* YOUR CODE HERE */}</div>
+          <div className="restaurants options">
+            {/* YOUR CODE HERE */}
+            {/* for (int i =0; i<restaurants; i++) { 
+            <p> {restaurants[i]}</p>
+            } */}
+            {/* {restaurants.map((value))=> { 
+              <p> {value} </p>
+            }} */}
+          </div>
         </div>
 
         {/* INSTRUCTIONS GO HERE */}
-
+        <Instructions struct={appInfo.instructions} />
         {/* MENU DISPLAY */}
         <div className="MenuDisplay display">
           <div className="MenuItemButtons menu-items">
@@ -51,7 +85,9 @@ export function App() {
           </div>
 
           {/* NUTRITION FACTS */}
-          <div className="NutritionFacts nutrition-facts">{/* YOUR CODE HERE */}</div>
+          <div className="NutritionFacts nutrition-facts">
+            {/* YOUR CODE HERE */}
+          </div>
         </div>
 
         <div className="data-sources">
@@ -59,7 +95,7 @@ export function App() {
         </div>
       </div>
     </main>
-  )
+  );
 }
 
-export default App
+export default App;
