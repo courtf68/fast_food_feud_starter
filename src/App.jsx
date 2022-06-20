@@ -1,6 +1,7 @@
 import * as React from "react";
-// IMPORT ANY NEEDED COMPONENTS HERE
 
+// IMPORT ANY NEEDED COMPONENTS HERE
+import { useState } from "react";
 // import Header from "./components/Header/Header";
 // import "./Header.css";
 import "./components/Header/Header";
@@ -34,10 +35,11 @@ export const appInfo = {
 const { data, categories, restaurants } = createDataSet();
 
 //start my code block
+//const [index, setIndex] = React.useState(categories); //ind, state vari|set ind, setter func    delete line if blank
 
-// function Header(props) {
-//   return <h1>Hello, {props.name}</h1>;
-// }
+function handleClick() {
+  const [index, setIndex] = React.useState(categories);
+}
 
 //end
 
@@ -51,10 +53,6 @@ export function App() {
           {/* YOUR CODE HERE */}
           {/* map over */}
           {categories.map((str, i) => {
-             let buttonClassName = "chip"; //if false
-             if (chip isActive=true)
-       //      {buttonClassName = "chip active";}
-
             return <Chip key={i} label={str} />;
             // return <p key={i}> {str} </p>;
           })}
