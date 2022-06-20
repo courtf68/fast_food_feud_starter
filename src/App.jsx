@@ -51,9 +51,13 @@ export function App() {
           {/* YOUR CODE HERE */}
           {/* map over */}
           {categories.map((str, i) => {
-            return <p key={i}> {str} </p>;
+             let buttonClassName = "chip"; //if false
+             if (chip isActive=true)
+       //      {buttonClassName = "chip active";}
+
+            return <Chip key={i} label={str} />;
+            // return <p key={i}> {str} </p>;
           })}
-          ;
         </div>
       </div>
 
@@ -61,6 +65,8 @@ export function App() {
       <div className="container">
         {/* HEADER GOES HERE */}
         <Header info={appInfo.title} />
+        <Header tagg={appInfo.tagline} />
+        <Header des={appInfo.description} />
         {/* RESTAURANTS ROW */}
         <div className="RestaurantsRow">
           <h2 className="title">Restaurants</h2>
@@ -69,9 +75,10 @@ export function App() {
             {/* for (int i =0; i<restaurants; i++) { 
             <p> {restaurants[i]}</p>
             } */}
-            {/* {restaurants.map((value))=> { 
-              <p> {value} </p>
-            }} */}
+            {restaurants.map((str, i) => {
+              return <Chip key={i} label={str} />;
+              // return <p key={i}> {str} </p>;
+            })}
           </div>
         </div>
 
