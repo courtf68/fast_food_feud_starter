@@ -1,11 +1,14 @@
 import * as React from "react";
 
 // IMPORT ANY NEEDED COMPONENTS HERE
-import { useState } from "react";
-// import Header from "./components/Header/Header";
-// import "./Header.css";
+// import { useState } from "react";
+
 import "./components/Header/Header";
 import Header from "./components/Header/Header";
+
+import "./components/NutritionalLabel/NutritionalLabel";
+import NutritionalLabel from "./components/NutritionalLabel/NutritionalLabel";
+import { NutritionalLabelFact } from "./components/NutritionalLabel/NutritionalLabel";
 
 import "./components/Instructions/Instructions";
 import Instructions from "./components/Instructions/Instructions";
@@ -16,6 +19,7 @@ import Chip from "./components/Chip/Chip";
 //end of additions
 import { createDataSet } from "./data/dataset";
 import "./App.css";
+import { render } from "@testing-library/react";
 
 // don't move this!
 export const appInfo = {
@@ -35,15 +39,31 @@ export const appInfo = {
 const { data, categories, restaurants } = createDataSet();
 
 //start my code block
-//const [index, setIndex] = React.useState(categories); //ind, state vari|set ind, setter func    delete line if blank
-
-function handleClick() {
-  const [index, setIndex] = React.useState(categories);
-}
 
 //end
 
 export function App() {
+  const [choose, setCatChoice] = React.useState(null); //og categ
+  const [selIt, setselChoice] = React.useState(null); //nutri item
+  const [RestIt, setResChoice] = React.useState(null); //res item
+  function clickd(str) {
+    setCatChoice(str);
+  }
+  function clicked(str) {
+    setResChoice(str);
+  }
+
+  //   //onclick to update state
+  //    var currentMenuItems = data.filter(item)=> {
+  //   return item.food_category = choose + RestIt;
+  //  }
+
+  // render()
+  //  currentMenuItems.map((strrs,i)) => {
+  //    <Chip  key={i}
+  //  label={str}/>
+  // }
+
   return (
     <main className="App">
       {/* CATEGORIES COLUMN */}
@@ -53,7 +73,16 @@ export function App() {
           {/* YOUR CODE HERE */}
           {/* map over */}
           {categories.map((str, i) => {
-            return <Chip key={i} label={str} />;
+            return (
+              <Chip
+                key={i}
+                label={str}
+                isActive={str === choose}
+                clicky={() => {
+                  clickd(str);
+                }}
+              />
+            );
             // return <p key={i}> {str} </p>;
           })}
         </div>
@@ -73,8 +102,17 @@ export function App() {
             {/* for (int i =0; i<restaurants; i++) { 
             <p> {restaurants[i]}</p>
             } */}
-            {restaurants.map((str, i) => {
-              return <Chip key={i} label={str} />;
+            {restaurants.map((strs, i) => {
+              return (
+                <Chip
+                  key={i}
+                  label={strs}
+                  isActive={strs === RestIt}
+                  clicky={() => {
+                    clicked(strs);
+                  }}
+                />
+              );
               // return <p key={i}> {str} </p>;
             })}
           </div>
@@ -91,7 +129,9 @@ export function App() {
 
           {/* NUTRITION FACTS */}
           <div className="NutritionFacts nutrition-facts">
-            {/* YOUR CODE HERE */}
+            {/* YOUR CODE HERE ... render */}
+            <h4 className="item-name"></h4>
+            <NutritionalLabel item={appInfo}></NutritionalLabel>
           </div>
         </div>
 
