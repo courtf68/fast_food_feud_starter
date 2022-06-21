@@ -69,6 +69,18 @@ export function App() {
   //    <Chip  key={i}
   //  label={str}/>
   // }
+  let structy = appInfo.instructions.start;
+  if (!choose && !RestIt && !selIt) {
+    structy = appInfo.instructions.start;
+  } else if (choose && !RestIt) {
+    structy = appInfo.instructions.onlyCategory;
+  } else if (!choose && RestIt) {
+    structy = appInfo.instructions.onlyRestaurant;
+  } else if (choose && RestIt && !selIt) {
+    structy = appInfo.instructions.noSelectedItem;
+  } else {
+    structy = appInfo.instructions.allSelected;
+  }
 
   return (
     <main className="App">
@@ -124,7 +136,8 @@ export function App() {
         </div>
 
         {/* INSTRUCTIONS GO HERE */}
-        <Instructions struct={appInfo.instructions} />
+        <Instructions struct={structy} />
+
         {/* MENU DISPLAY */}
         <div className="MenuDisplay display">
           <div className="MenuItemButtons menu-items">
