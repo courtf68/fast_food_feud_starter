@@ -61,7 +61,7 @@ export function App() {
   //   return item.food_category = choose[categories] + RestIt[restaurants];
   //   //chip render ig
   //  }
-  var menuThings = data.filter((item) => {
+  var currentMenuItems = data.filter((item) => {
     return item.restaurant === RestIt && item.food_category === choose;
   });
   // render()
@@ -130,12 +130,12 @@ export function App() {
           <div className="MenuItemButtons menu-items">
             <h2 className="title">Menu Items</h2>
             {/* YOUR CODE HERE */}
-            {menuThings.map((menuI, i) => {
+            {currentMenuItems.map((menuI, i) => {
               return (
                 <Chip
                   key={i}
-                  label={menuI}
-                  isActive={menuI === selIt}
+                  label={menuI.item_name}
+                  isActive={selIt && selIt.item_name === menuI.item_name}
                   clicky={() => {
                     clickedMenu(menuI);
                   }}
@@ -148,7 +148,7 @@ export function App() {
           <div className="NutritionFacts nutrition-facts">
             {/* YOUR CODE HERE ... render */}
             <h4 className="item-name"></h4>
-            <NutritionalLabel item={appInfo}></NutritionalLabel>
+            {selIt ? <NutritionalLabel item={selIt} /> : null}
           </div>
         </div>
 
