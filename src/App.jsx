@@ -52,12 +52,18 @@ export function App() {
   function clicked(str) {
     setResChoice(str);
   }
+  function clickedMenu(str) {
+    setselChoice(str);
+  }
 
   //   //onclick to update state
   //    var currentMenuItems = data.filter(item)=> {
-  //   return item.food_category = choose + RestIt;
+  //   return item.food_category = choose[categories] + RestIt[restaurants];
+  //   //chip render ig
   //  }
-
+  var menuThings = data.filter((item) => {
+    return item.restaurant === RestIt && item.food_category === choose;
+  });
   // render()
   //  currentMenuItems.map((strrs,i)) => {
   //    <Chip  key={i}
@@ -113,7 +119,6 @@ export function App() {
                   }}
                 />
               );
-              // return <p key={i}> {str} </p>;
             })}
           </div>
         </div>
@@ -125,6 +130,18 @@ export function App() {
           <div className="MenuItemButtons menu-items">
             <h2 className="title">Menu Items</h2>
             {/* YOUR CODE HERE */}
+            {menuThings.map((menuI, i) => {
+              return (
+                <Chip
+                  key={i}
+                  label={menuI}
+                  isActive={menuI === selIt}
+                  clicky={() => {
+                    clickedMenu(menuI);
+                  }}
+                />
+              );
+            })}
           </div>
 
           {/* NUTRITION FACTS */}
